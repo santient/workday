@@ -1,0 +1,1 @@
+"C:\Program Files\ilastik-1.2.2rc4\ilastik.exe" --headless --project "C:\Users\karhohs\Documents\GitHub\workday\ilastik\neuron_second_stage.ilp" --export_source Probabilities "C:\Users\karhohs\Documents\GitHub\workday\images\ilastik\002003-4_second_stage.tif"
