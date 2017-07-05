@@ -2,7 +2,7 @@ CellProfiler Pipeline: http://www.cellprofiler.org
 Version:3
 DateRevision:300
 GitHash:
-ModuleCount:20
+ModuleCount:21
 HasImagePlaneDetails:False
 
 Images:[module_num:1|svn_version:\'Unknown\'|variable_revision_number:2|show_window:False|notes:\x5B\'To begin creating your project, use the Images module to compile a list of files and/or folders that you want to analyze. You can also specify a set of rules to include only the desired files in your selected folders.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
@@ -205,15 +205,15 @@ ImageMath:[module_num:8|svn_version:\'Unknown\'|variable_revision_number:4|show_
     Name the output image:ImageAfterMathNeurites
     Image or measurement?:Image
     Select the first image:nuerite
-    Multiply the first image by:0.33
+    Multiply the first image by:0.8
     Measurement:
     Image or measurement?:Image
     Select the second image:nuerite_edge
-    Multiply the second image by:0.33
+    Multiply the second image by:0.1
     Measurement:
     Image or measurement?:Image
     Select the third image:nuclei_neuron_body
-    Multiply the third image by:0.33
+    Multiply the third image by:0.1
     Measurement:
 
 ApplyThreshold:[module_num:9|svn_version:\'Unknown\'|variable_revision_number:10|show_window:False|notes:\x5B\'The combined probability image is transformed into a binary image for segmentation.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
@@ -236,12 +236,7 @@ ApplyThreshold:[module_num:9|svn_version:\'Unknown\'|variable_revision_number:10
     # of deviations:2.0
     Thresholding method:Otsu
 
-Closing:[module_num:10|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\'A relatively small closing operation is used to try and fuse small breaks in the neurites.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Input:ImageAfterMathNeurites
-    Output:Neurites_closed
-    Structuring element:disk,10
-
-Morph:[module_num:11|svn_version:\'Unknown\'|variable_revision_number:5|show_window:False|notes:\x5B\'This binary image is transformed into a skeleton. From the ilastik/cp transformation of the neurite image we wanted to isolate the connections between neurons and their neurites. However, this transformation may appear "alien" compared to the probe used to label the neurons and their neurites. Therefore, to create a segmentation that is true to the source image, only the connections are retained through a skeletonization process.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+Morph:[module_num:10|svn_version:\'Unknown\'|variable_revision_number:5|show_window:False|notes:\x5B\'This binary image is transformed into a skeleton. From the ilastik/cp transformation of the neurite image we wanted to isolate the connections between neurons and their neurites. However, this transformation may appear "alien" compared to the probe used to label the neurons and their neurites. Therefore, to create a segmentation that is true to the source image, only the connections are retained through a skeletonization process.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the input image:ApplyThresholdNeurites
     Name the output image:Neurite_skeletons
     Select the operation to perform:thin
@@ -249,7 +244,7 @@ Morph:[module_num:11|svn_version:\'Unknown\'|variable_revision_number:5|show_win
     Repetition number:2
     Rescale values from 0 to 1?:Yes
 
-Watershed:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\'The boundaries of the neurites and neurons are found using the skeleton as a seed in the original cyto image.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+Watershed:[module_num:11|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\'The boundaries of the neurites and neurons are found using the skeleton as a seed in the original cyto image.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Input:ApplyThresholdCyto
     Object:Watershed
     Generate from:Markers
@@ -257,17 +252,27 @@ Watershed:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:1|show
     Mask:ApplyThresholdCyto
     Connectivity:8
 
-ConvertObjectsToImage:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\'This watershed image is then transformed into a binary image. This binary image will closely resemble the binary image of the thresholded cyto channel. However, this new binary image will include connections between the neurites that were inferred through the ilastik/cp processing.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+ConvertObjectsToImage:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\'This watershed image is then transformed into a binary image. This binary image will closely resemble the binary image of the thresholded cyto channel. However, this new binary image will include connections between the neurites that were inferred through the ilastik/cp processing.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the input objects:Watershed
     Name the output image:Neurite_Binary
     Select the color format:Binary (black & white)
     Select the colormap:Default
 
-IdentifySecondaryObjects:[module_num:14|svn_version:\'Unknown\'|variable_revision_number:9|show_window:False|notes:\x5B\'The nuclei identied earlier will be used to segment individual nuerons. Assignment of neurites to each neuron is determined by the distance away from a nuclei. Without being given additonal information about the neurites, this assumes the likelihood a nuerite belongs to a nueron is determined by the shortest path to a nuclei.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+Opening:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:Neurite_Binary
+    Output:Neurite_Binary_Opening
+    Structuring element:disk,1
+
+Closing:[module_num:14|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:Neurite_Binary_Opening
+    Output:Neurite_Binary_Closing
+    Structuring element:disk,1
+
+IdentifySecondaryObjects:[module_num:15|svn_version:\'Unknown\'|variable_revision_number:9|show_window:False|notes:\x5B\'The nuclei identied earlier will be used to segment individual nuerons. Assignment of neurites to each neuron is determined by the distance away from a nuclei. Without being given additonal information about the neurites, this assumes the likelihood a nuerite belongs to a nueron is determined by the shortest path to a nuclei.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:True]
     Select the input objects:Nuclei
     Name the objects to be identified:CellBodiesPlusNeurites
     Select the method to identify the secondary objects:Distance - B
-    Select the input image:Neurite_Binary
+    Select the input image:Neurite_Binary_Closing
     Number of pixels by which to expand the primary objects:2048
     Regularization factor:0
     Name the outline image:SecondaryOutlines
@@ -296,19 +301,19 @@ IdentifySecondaryObjects:[module_num:14|svn_version:\'Unknown\'|variable_revisio
     # of deviations:2
     Thresholding method:Otsu
 
-ConvertObjectsToImage:[module_num:15|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\'The segmentation of the nuclei is visualized.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+ConvertObjectsToImage:[module_num:16|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\'The segmentation of the nuclei is visualized.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the input objects:Nuclei
     Name the output image:NucleiImage
     Select the color format:Color
     Select the colormap:Default
 
-ConvertObjectsToImage:[module_num:16|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\'The segmentation of the neurons and neurites is visualized.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+ConvertObjectsToImage:[module_num:17|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\'The segmentation of the neurons and neurites is visualized.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the input objects:CellBodiesPlusNeurites
     Name the output image:CellImage
     Select the color format:Color
     Select the colormap:Default
 
-OverlayOutlines:[module_num:17|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\'An outline of the segmentation on the original image is created as a visual aid.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:True]
+OverlayOutlines:[module_num:18|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\'An outline of the segmentation on the original image is created as a visual aid.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:True]
     Display outlines on a blank image?:No
     Select image on which to display outlines:Cyto
     Name the output image:CytoOverlay
@@ -320,7 +325,7 @@ OverlayOutlines:[module_num:17|svn_version:\'Unknown\'|variable_revision_number:
     Select outline color:Green
     Select objects to display:Nuclei
 
-SaveImages:[module_num:18|svn_version:\'Unknown\'|variable_revision_number:12|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+SaveImages:[module_num:19|svn_version:\'Unknown\'|variable_revision_number:12|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image
     Select the image to save:NucleiImage
     Select method for constructing file names:From image filename
@@ -338,7 +343,7 @@ SaveImages:[module_num:18|svn_version:\'Unknown\'|variable_revision_number:12|sh
     Create subfolders in the output folder?:No
     Base image folder:Elsewhere...\x7C
 
-SaveImages:[module_num:19|svn_version:\'Unknown\'|variable_revision_number:12|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+SaveImages:[module_num:20|svn_version:\'Unknown\'|variable_revision_number:12|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image
     Select the image to save:CellImage
     Select method for constructing file names:From image filename
@@ -356,7 +361,7 @@ SaveImages:[module_num:19|svn_version:\'Unknown\'|variable_revision_number:12|sh
     Create subfolders in the output folder?:No
     Base image folder:Elsewhere...\x7C
 
-SaveImages:[module_num:20|svn_version:\'Unknown\'|variable_revision_number:12|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+SaveImages:[module_num:21|svn_version:\'Unknown\'|variable_revision_number:12|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image
     Select the image to save:CytoOverlay
     Select method for constructing file names:From image filename
