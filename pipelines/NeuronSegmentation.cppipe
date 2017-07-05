@@ -1,17 +1,17 @@
 CellProfiler Pipeline: http://www.cellprofiler.org
 Version:3
-DateRevision:20160503183100
-GitHash:ac0529e
-ModuleCount:15
+DateRevision:300
+GitHash:
+ModuleCount:27
 HasImagePlaneDetails:False
 
 Images:[module_num:1|svn_version:\'Unknown\'|variable_revision_number:2|show_window:False|notes:\x5B\'To begin creating your project, use the Images module to compile a list of files and/or folders that you want to analyze. You can also specify a set of rules to include only the desired files in your selected folders.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     :
     Filter images?:Custom
-    Select the rule criteria:and (or (file does contain ".mat") (extension does istif)) (file doesnot contain "004-")
+    Select the rule criteria:and (or (file does contain ".tif") (extension does istif))
 
 Metadata:[module_num:2|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\'The Metadata module optionally allows you to extract information describing your images (i.e, metadata) which will be stored along with your measurements. This information can be contained in the file name and/or location, or in an external file.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Extract metadata?:Yes
+    Extract metadata?:No
     Metadata data type:Text
     Metadata types:{}
     Extraction method count:2
@@ -34,76 +34,96 @@ Metadata:[module_num:2|svn_version:\'Unknown\'|variable_revision_number:4|show_w
     Match file and image metadata:\x5B\x5D
     Use case insensitive matching?:No
 
-NamesAndTypes:[module_num:3|svn_version:\'Unknown\'|variable_revision_number:6|show_window:False|notes:\x5B\'The NamesAndTypes module allows you to assign a meaningful name to each image by which other modules will refer to it.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+NamesAndTypes:[module_num:3|svn_version:\'Unknown\'|variable_revision_number:7|show_window:False|notes:\x5B\'The NamesAndTypes module allows you to assign a meaningful name to each image by which other modules will refer to it.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Assign a name to:Images matching rules
     Select the image type:Grayscale image
     Name to assign these images:DNA
-    Match metadata:\x5B{u\'IllumTuj1\'\x3A u\'TopFolderName\', u\'Map2\'\x3A u\'TopFolderName\', u\'IllumDAPI\'\x3A u\'TopFolderName\', u\'Tuj1\'\x3A u\'TopFolderName\', u\'IllumC4\'\x3A u\'TopFolderName\', u\'DAPI\'\x3A u\'TopFolderName\', u\'IllumMap2\'\x3A u\'TopFolderName\', u\'C4\'\x3A u\'TopFolderName\'}, {u\'IllumTuj1\'\x3A None, u\'Map2\'\x3A u\'Well\', u\'IllumDAPI\'\x3A None, u\'Tuj1\'\x3A u\'Well\', u\'IllumC4\'\x3A None, u\'DAPI\'\x3A u\'Well\', u\'IllumMap2\'\x3A None, u\'C4\'\x3A u\'Well\'}, {u\'IllumTuj1\'\x3A None, u\'Map2\'\x3A u\'Site\', u\'IllumDAPI\'\x3A None, u\'Tuj1\'\x3A u\'Site\', u\'IllumC4\'\x3A None, u\'DAPI\'\x3A u\'Site\', u\'IllumMap2\'\x3A None, u\'C4\'\x3A u\'Site\'}\x5D
-    Image set matching method:Metadata
+    Match metadata:\x5B{u\'nuerite\'\x3A None, \'DNA\'\x3A None, u\'Cyto\'\x3A u\'TopFolderName\', u\'nuclei_neuron_edge\'\x3A None, u\'nuclei_neuron\'\x3A None, u\'neurite_neuron_body\'\x3A None, u\'bkgd\'\x3A None, u\'nuerite_bright\'\x3A None, u\'nuerite_edge\'\x3A None, u\'nuclei_bright\'\x3A None}, {u\'nuerite\'\x3A None, \'DNA\'\x3A None, u\'Cyto\'\x3A u\'Well\', u\'nuclei_neuron_edge\'\x3A None, u\'nuclei_neuron\'\x3A None, u\'neurite_neuron_body\'\x3A None, u\'bkgd\'\x3A None, u\'nuerite_bright\'\x3A None, u\'nuerite_edge\'\x3A None, u\'nuclei_bright\'\x3A None}, {u\'nuerite\'\x3A None, \'DNA\'\x3A None, u\'Cyto\'\x3A u\'Site\', u\'nuclei_neuron_edge\'\x3A None, u\'nuclei_neuron\'\x3A None, u\'neurite_neuron_body\'\x3A None, u\'bkgd\'\x3A None, u\'nuerite_bright\'\x3A None, u\'nuerite_edge\'\x3A None, u\'nuclei_bright\'\x3A None}\x5D
+    Image set matching method:Order
     Set intensity range from:Image metadata
-    Assignments count:8
+    Assignments count:10
     Single images count:0
     Maximum intensity:255.0
-    Select the rule criteria:and (file does contain "001.tif")
-    Name to assign these images:C4
+    Process as 3D:No
+    x:1.0
+    y:1.0
+    z:1.0
+    Select the rule criteria:and (file does contain "w3.tif")
+    Name to assign these images:Cyto
     Name to assign these objects:Cell
     Select the image type:Grayscale image
     Set intensity range from:Image metadata
     Retain outlines of loaded objects?:No
     Name the outline image:LoadedOutlines
     Maximum intensity:255.0
-    Select the rule criteria:and (file does contain "002.tif")
-    Name to assign these images:Tuj1
-    Name to assign these objects:Cell
+    Select the rule criteria:and (file does contain "w1.tif")
+    Name to assign these images:DNA
+    Name to assign these objects:Nucleus
     Select the image type:Grayscale image
     Set intensity range from:Image metadata
     Retain outlines of loaded objects?:No
     Name the outline image:LoadedOutlines
     Maximum intensity:255.0
-    Select the rule criteria:and (file does contain "003.tif")
-    Name to assign these images:Map2
-    Name to assign these objects:Cell
+    Select the rule criteria:and (file does contain "es_0")
+    Name to assign these images:bkgd
+    Name to assign these objects:Nucleus
     Select the image type:Grayscale image
     Set intensity range from:Image metadata
     Retain outlines of loaded objects?:No
     Name the outline image:LoadedOutlines
     Maximum intensity:255.0
-    Select the rule criteria:and (file does contain "004.tif")
-    Name to assign these images:DAPI
-    Name to assign these objects:Cell
+    Select the rule criteria:and (file does contain "es_1")
+    Name to assign these images:nuclei_bright
+    Name to assign these objects:Nucleus
     Select the image type:Grayscale image
     Set intensity range from:Image metadata
     Retain outlines of loaded objects?:No
     Name the outline image:LoadedOutlines
     Maximum intensity:255.0
-    Select the rule criteria:and (file does contain "IllumDAPI")
-    Name to assign these images:IllumDAPI
+    Select the rule criteria:and (file does contain "es_2")
+    Name to assign these images:nuclei_neuron
     Name to assign these objects:Nucleus
-    Select the image type:Illumination function
+    Select the image type:Grayscale image
     Set intensity range from:Image metadata
     Retain outlines of loaded objects?:No
     Name the outline image:LoadedOutlines
     Maximum intensity:255.0
-    Select the rule criteria:and (file does contain "IllumC4")
-    Name to assign these images:IllumC4
+    Select the rule criteria:and (file does contain "es_3")
+    Name to assign these images:nuerite_bright
     Name to assign these objects:Nucleus
-    Select the image type:Illumination function
+    Select the image type:Grayscale image
     Set intensity range from:Image metadata
     Retain outlines of loaded objects?:No
     Name the outline image:LoadedOutlines
     Maximum intensity:255.0
-    Select the rule criteria:and (file does contain "IllumTuj1")
-    Name to assign these images:IllumTuj1
+    Select the rule criteria:and (file does contain "es_4")
+    Name to assign these images:nuerite
     Name to assign these objects:Nucleus
-    Select the image type:Illumination function
+    Select the image type:Grayscale image
     Set intensity range from:Image metadata
     Retain outlines of loaded objects?:No
     Name the outline image:LoadedOutlines
     Maximum intensity:255.0
-    Select the rule criteria:and (file does contain "IllumMap2")
-    Name to assign these images:IllumMap2
+    Select the rule criteria:and (file does contain "es_5")
+    Name to assign these images:nuerite_edge
     Name to assign these objects:Nucleus
-    Select the image type:Illumination function
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Maximum intensity:255.0
+    Select the rule criteria:and (file does contain "es_6")
+    Name to assign these images:nuclei_neuron_edge
+    Name to assign these objects:Nucleus
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedOutlines
+    Maximum intensity:255.0
+    Select the rule criteria:and (file does contain "es_7")
+    Name to assign these images:neurite_neuron_body
+    Name to assign these objects:Nucleus
+    Select the image type:Grayscale image
     Set intensity range from:Image metadata
     Retain outlines of loaded objects?:No
     Name the outline image:LoadedOutlines
@@ -114,72 +134,202 @@ Groups:[module_num:4|svn_version:\'Unknown\'|variable_revision_number:2|show_win
     grouping metadata count:1
     Metadata category:None
 
-CorrectIlluminationApply:[module_num:5|svn_version:\'Unknown\'|variable_revision_number:3|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:C4
-    Name the output image:CorrC4
-    Select the illumination function:IllumC4
-    Select how the illumination function is applied:Divide
-    Select the input image:DAPI
-    Name the output image:CorrDAPI
-    Select the illumination function:IllumDAPI
-    Select how the illumination function is applied:Divide
-    Select the input image:Map2
-    Name the output image:CorrMap2
-    Select the illumination function:IllumMap2
-    Select how the illumination function is applied:Divide
-    Select the input image:Tuj1
-    Name the output image:CorrTuj1
-    Select the illumination function:IllumTuj1
-    Select how the illumination function is applied:Divide
+EnhanceOrSuppressFeatures:[module_num:5|svn_version:\'Unknown\'|variable_revision_number:6|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:DNA
+    Output:EnhancedBrightDNA
+    Select the operation:Enhance
+    Feature size:28
+    Feature type:Speckles
+    Range of hole sizes:1,10
+    Smoothing scale:2.0
+    Shear angle:0.0
+    Decay:0.95
+    Enhancement method:Tubeness
+    Speed and accuracy:Fast
 
-IdentifyPrimaryObjects:[module_num:6|svn_version:\'Unknown\'|variable_revision_number:10|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:CorrDAPI
-    Name the primary objects to be identified:Nuclei
-    Typical diameter of objects, in pixel units (Min,Max):25,150
+IdentifyPrimaryObjects:[module_num:6|svn_version:\'Unknown\'|variable_revision_number:13|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:EnhancedBrightDNA
+    Object:PrelimBrightNuclei
+    Typical diameter of objects, in pixel units (Min,Max):25,65
     Discard objects outside the diameter range?:Yes
-    Try to merge too small objects with nearby larger objects?:No
+    Discard objects touching the border of the image?:No
+    Method to distinguish clumped objects:Intensity
+    Method to draw dividing lines between clumped objects:Intensity
+    Size of smoothing filter:5
+    Suppress local maxima that are closer than this minimum allowed distance:10
+    Speed up by using lower-resolution image to find local maxima?:Yes
+    Fill holes in identified objects?:After declumping only
+    Automatically calculate size of smoothing filter for declumping?:Yes
+    Automatically calculate minimum allowed distance between local maxima?:No
+    Handling of objects if excessive number of objects identified:Continue
+    Maximum number of objects:500
+    Use advanced settings?:Yes
+    Threshold setting version:9
+    Threshold strategy:Global
+    Thresholding method:Otsu
+    Threshold smoothing scale:1.3488
+    Threshold correction factor:.7
+    Lower and upper bounds on threshold:0.0,1.0
+    Manual threshold:0.0
+    Select the measurement to threshold with:None
+    Two-class or three-class thresholding?:Two classes
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+    Size of adaptive window:10
+    Lower outlier fraction:0.05
+    Upper outlier fraction:0.05
+    Averaging method:Mean
+    Variance method:Standard deviation
+    # of deviations:2
+    Thresholding method:Otsu
+
+MeasureObjectSizeShape:[module_num:7|svn_version:\'Unknown\'|variable_revision_number:1|show_window:True|notes:\x5B\'Will filter \'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select objects to measure:PrelimBrightNuclei
+    Calculate the Zernike features?:Yes
+
+FilterObjects:[module_num:8|svn_version:\'Unknown\'|variable_revision_number:8|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:PrelimBrightNuclei
+    Object:BrightNuclei
+    Select the filtering mode:Measurements
+    Select the filtering method:Limits
+    Select the objects that contain the filtered objects:None
+    Rules file location:Elsewhere...\x7C
+    Rules file name:rules.txt
+    Class number:1
+    Measurement count:1
+    Additional object count:0
+    Assign overlapping child to:Both parents
+    Select the measurement to filter by:AreaShape_Eccentricity
+    Filter using a minimum measurement value?:No
+    Minimum value:0.0
+    Filter using a maximum measurement value?:Yes
+    Maximum value:.7
+
+ExpandOrShrinkObjects:[module_num:9|svn_version:\'Unknown\'|variable_revision_number:1|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input objects:BrightNuclei
+    Name the output objects:ExpandedBrightNuclei
+    Select the operation:Expand objects by a specified number of pixels
+    Number of pixels by which to expand or shrink:18
+    Fill holes in objects so that all objects shrink to a single point?:No
+    Retain the outlines of the identified objects?:Yes
+    Name the outline image:ExpandedBrightNucleiOutlines
+
+MaskImage:[module_num:10|svn_version:\'Unknown\'|variable_revision_number:3|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:DNA
+    Name the output image:DNAwithLines
+    Use objects or an image as a mask?:Objects
+    Select object for mask:ExpandedBrightNuclei
+    Select image for mask:ExpandedBrightNucleiOutlines
+    Invert the mask?:Yes
+
+IdentifyPrimaryObjects:[module_num:11|svn_version:\'Unknown\'|variable_revision_number:13|show_window:True|notes:\x5B\'The identification in this module is pretty terrible. I wonder if we need to just IdPrim using the raw image and somehow combine those drawing lines with the BrightNuc drawing lines?\', \'\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:DNAwithLines
+    Object:Nuclei
+    Typical diameter of objects, in pixel units (Min,Max):25,120
+    Discard objects outside the diameter range?:Yes
     Discard objects touching the border of the image?:No
     Method to distinguish clumped objects:Shape
-    Method to draw dividing lines between clumped objects:Shape
-    Size of smoothing filter:10
-    Suppress local maxima that are closer than this minimum allowed distance:7.0
+    Method to draw dividing lines between clumped objects:Intensity
+    Size of smoothing filter:25
+    Suppress local maxima that are closer than this minimum allowed distance:15
     Speed up by using lower-resolution image to find local maxima?:Yes
-    Name the outline image:PrimaryOutlines
     Fill holes in identified objects?:After declumping only
     Automatically calculate size of smoothing filter for declumping?:Yes
     Automatically calculate minimum allowed distance between local maxima?:Yes
-    Retain outlines of the identified objects?:No
-    Automatically calculate the threshold using the Otsu method?:Yes
-    Enter Laplacian of Gaussian threshold:0.5
-    Automatically calculate the size of objects for the Laplacian of Gaussian filter?:Yes
-    Enter LoG filter diameter:5.0
     Handling of objects if excessive number of objects identified:Continue
     Maximum number of objects:500
-    Threshold setting version:2
+    Use advanced settings?:Yes
+    Threshold setting version:10
     Threshold strategy:Global
     Thresholding method:Otsu
-    Select the smoothing method for thresholding:Automatic
-    Threshold smoothing scale:1.0
+    Threshold smoothing scale:1.3488
     Threshold correction factor:1.0
     Lower and upper bounds on threshold:0.0,1.0
-    Approximate fraction of image covered by objects?:0.01
     Manual threshold:0.0
     Select the measurement to threshold with:None
-    Select binary image:None
-    Masking objects:None
     Two-class or three-class thresholding?:Two classes
-    Minimize the weighted variance or the entropy?:Weighted variance
     Assign pixels in the middle intensity class to the foreground or the background?:Foreground
-    Method to calculate adaptive window size:Image size
-    Size of adaptive window:10
-    Use default parameters?:Default
+    Size of adaptive window:50
     Lower outlier fraction:0.05
     Upper outlier fraction:0.05
     Averaging method:Mean
     Variance method:Standard deviation
     # of deviations:2.0
+    Thresholding method:Otsu
 
-ImageMath:[module_num:7|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+OverlayOutlines:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:4|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Display outlines on a blank image?:No
+    Select image on which to display outlines:DNA
+    Name the output image:NucleiOutlined
+    Outline display mode:Color
+    Select method to determine brightness of outlines:Max of image
+    How to outline:Thick
+    Select outline color:Red
+    Select objects to display:Nuclei
+
+ConvertObjectsToImage:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:1|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input objects:Nuclei
+    Name the output image:NucleiImage
+    Select the color format:uint16
+    Select the colormap:Default
+
+SaveImages:[module_num:14|svn_version:\'Unknown\'|variable_revision_number:12|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:NucleiImage
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:DNA
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:Nuc
+    Saved file format:tiff
+    Output file location:Default Output Folder\x7C
+    Image bit depth:16-bit integer
+    Overwrite existing files without warning?:No
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...\x7C
+
+ImageMath:[module_num:15|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Operation:Add
+    Raise the power of the result by:1.0
+    Multiply the result by:1.0
+    Add to result:0.0
+    Set values less than 0 equal to 0?:Yes
+    Set values greater than 1 equal to 1?:Yes
+    Ignore the image masks?:No
+    Name the output image:ImageAfterMathNeurites
+    Image or measurement?:Image
+    Select the first image:nuerite
+    Multiply the first image by:0.33
+    Measurement:
+    Image or measurement?:Image
+    Select the second image:nuerite_edge
+    Multiply the second image by:0.33
+    Measurement:
+    Image or measurement?:Image
+    Select the third image:bkgd
+    Multiply the third image by:-0.33
+    Measurement:
+
+Closing:[module_num:16|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:ImageAfterMathNeurites
+    Output:Neurites_closed
+    Structuring element:disk,30
+
+Morphological skeleton:[module_num:17|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:Neurites_closed
+    Output:MorphologicalSkeleton
+
+Morph:[module_num:18|svn_version:\'Unknown\'|variable_revision_number:5|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:Neurites_closed
+    Name the output image:MorphBlue
+    Select the operation to perform:skelpe
+    Number of times to repeat operation:Forever
+    Repetition number:2
+    Rescale values from 0 to 1?:Yes
+
+ImageMath:[module_num:19|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Operation:Add
     Raise the power of the result by:1.0
     Multiply the result by:1.0
@@ -189,119 +339,41 @@ ImageMath:[module_num:7|svn_version:\'Unknown\'|variable_revision_number:4|show_
     Ignore the image masks?:No
     Name the output image:ImageAfterMath
     Image or measurement?:Image
-    Select the first image:Map2
-    Multiply the first image by:1.0
+    Select the first image:nuerite
+    Multiply the first image by:0.2
     Measurement:
     Image or measurement?:Image
-    Select the second image:Tuj1
-    Multiply the second image by:1.0
+    Select the second image:nuerite_edge
+    Multiply the second image by:0.2
+    Measurement:
+    Image or measurement?:Image
+    Select the third image:nuclei_neuron_edge
+    Multiply the third image by:0.2
+    Measurement:
+    Image or measurement?:Image
+    Select the fourth image:nuclei_neuron
+    Multiply the fourth image by:0.2
+    Measurement:
+    Image or measurement?:Image
+    Select the fifth image:bkgd
+    Multiply the fifth image by:-0.2
+    Measurement:
+    Image or measurement?:Image
+    Select the sixth image:MorphBlue
+    Multiply the sixth image by:1.0
     Measurement:
 
-EnhanceOrSuppressFeatures:[module_num:8|svn_version:\'Unknown\'|variable_revision_number:5|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:ImageAfterMath
-    Name the output image:EnhanceNeurites
-    Select the operation:Enhance
-    Feature size:10
-    Feature type:Neurites
-    Range of hole sizes:1,10
-    Smoothing scale:5
-    Shear angle:0.0
-    Decay:0.95
-    Enhancement method:Tubeness
-    Speed and accuracy:Fast / hexagonal
+Closing:[module_num:20|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:ImageAfterMath
+    Output:Cells_closed
+    Structuring element:disk,10
 
-ApplyThreshold:[module_num:9|svn_version:\'Unknown\'|variable_revision_number:7|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:EnhanceNeurites
-    Name the output image:ThreshNeurites
-    Select the output image type:Binary (black and white)
-    Set pixels below or above the threshold to zero?:Below threshold
-    Subtract the threshold value from the remaining pixel intensities?:No
-    Number of pixels by which to expand the thresholding around those excluded bright pixels:0.0
-    Threshold setting version:2
-    Threshold strategy:Global
-    Thresholding method:Otsu
-    Select the smoothing method for thresholding:No smoothing
-    Threshold smoothing scale:1.0
-    Threshold correction factor:1.0
-    Lower and upper bounds on threshold:0.0,1.0
-    Approximate fraction of image covered by objects?:0.01
-    Manual threshold:0.0
-    Select the measurement to threshold with:None
-    Select binary image:None
-    Masking objects:None
-    Two-class or three-class thresholding?:Three classes
-    Minimize the weighted variance or the entropy?:Weighted variance
-    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
-    Method to calculate adaptive window size:Image size
-    Size of adaptive window:10
-    Use default parameters?:Default
-    Lower outlier fraction:0.05
-    Upper outlier fraction:0.05
-    Averaging method:Mean
-    Variance method:Standard deviation
-    # of deviations:2.0
-
-Morph:[module_num:10|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:ThreshNeurites
-    Name the output image:MorphBlue
-    Select the operation to perform:close
-    Number of times to repeat operation:Once
-    Repetition number:2
-    Diameter:20.0
-    Structuring element:Disk
-    X offset:1.0
-    Y offset:1.0
-    Angle:0.0
-    Width:3.0
-    Height:3.0
-    Custom:5,5,1111111111111111111111111
-    Rescale values from 0 to 1?:Yes
-
-MaskImage:[module_num:11|svn_version:\'Unknown\'|variable_revision_number:3|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:ImageAfterMath
-    Name the output image:ImageAfterMath_Masked
-    Use objects or an image as a mask?:Image
-    Select object for mask:None
-    Select image for mask:MorphBlue
-    Invert the mask?:No
-
-ApplyThreshold:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:7|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:ImageAfterMath_Masked
-    Name the output image:Neurites_MaskedAndThreshed
-    Select the output image type:Grayscale
-    Set pixels below or above the threshold to zero?:Below threshold
-    Subtract the threshold value from the remaining pixel intensities?:No
-    Number of pixels by which to expand the thresholding around those excluded bright pixels:0.0
-    Threshold setting version:2
-    Threshold strategy:Global
-    Thresholding method:Otsu
-    Select the smoothing method for thresholding:No smoothing
-    Threshold smoothing scale:1.0
-    Threshold correction factor:1.0
-    Lower and upper bounds on threshold:0.0,1.0
-    Approximate fraction of image covered by objects?:0.01
-    Manual threshold:0.0
-    Select the measurement to threshold with:None
-    Select binary image:None
-    Masking objects:None
-    Two-class or three-class thresholding?:Three classes
-    Minimize the weighted variance or the entropy?:Weighted variance
-    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
-    Method to calculate adaptive window size:Image size
-    Size of adaptive window:10
-    Use default parameters?:Default
-    Lower outlier fraction:0.05
-    Upper outlier fraction:0.05
-    Averaging method:Mean
-    Variance method:Standard deviation
-    # of deviations:2.0
-
-IdentifySecondaryObjects:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:9|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+IdentifySecondaryObjects:[module_num:21|svn_version:\'Unknown\'|variable_revision_number:9|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the input objects:Nuclei
     Name the objects to be identified:CellBodiesPlusNeurites
     Select the method to identify the secondary objects:Propagation
-    Select the input image:Neurites_MaskedAndThreshed
-    Number of pixels by which to expand the primary objects:10
+    Select the input image:Cells_closed
+    Number of pixels by which to expand the primary objects:150
     Regularization factor:0
     Name the outline image:SecondaryOutlines
     Retain outlines of the identified secondary objects?:No
@@ -311,74 +383,98 @@ IdentifySecondaryObjects:[module_num:13|svn_version:\'Unknown\'|variable_revisio
     Retain outlines of the new primary objects?:No
     Name the new primary object outlines:FilteredNucleiOutlines
     Fill holes in identified objects?:No
-    Threshold setting version:2
+    Threshold setting version:9
     Threshold strategy:Global
     Thresholding method:Otsu
-    Select the smoothing method for thresholding:No smoothing
-    Threshold smoothing scale:1.0
-    Threshold correction factor:0.5
+    Threshold smoothing scale:0
+    Threshold correction factor:1.0
     Lower and upper bounds on threshold:0.0,1.0
-    Approximate fraction of image covered by objects?:0.01
-    Manual threshold:0.0
+    Manual threshold:0.5
     Select the measurement to threshold with:None
-    Select binary image:None
-    Masking objects:None
     Two-class or three-class thresholding?:Three classes
-    Minimize the weighted variance or the entropy?:Weighted variance
-    Assign pixels in the middle intensity class to the foreground or the background?:Background
-    Method to calculate adaptive window size:Image size
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
     Size of adaptive window:10
-    Use default parameters?:Default
     Lower outlier fraction:0.05
     Upper outlier fraction:0.05
     Averaging method:Mean
     Variance method:Standard deviation
-    # of deviations:2.0
+    # of deviations:2
+    Thresholding method:Otsu
 
-SaveImages:[module_num:14|svn_version:\'Unknown\'|variable_revision_number:11|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the type of image to save:Objects
-    Select the image to save:OrigOverlay2
-    Select the objects to save:CellBodiesPlusNeurites
-    Select the module display window to save:None
+ConvertObjectsToImage:[module_num:22|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input objects:Nuclei
+    Name the output image:NucleiImage
+    Select the color format:Color
+    Select the colormap:Default
+
+ConvertObjectsToImage:[module_num:23|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input objects:CellBodiesPlusNeurites
+    Name the output image:CellImage
+    Select the color format:Color
+    Select the colormap:Default
+
+OverlayOutlines:[module_num:24|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Display outlines on a blank image?:No
+    Select image on which to display outlines:Cyto
+    Name the output image:CytoOverlay
+    Outline display mode:Color
+    Select method to determine brightness of outlines:Max of image
+    How to outline:Thick
+    Select outline color:Red
+    Select objects to display:CellBodiesPlusNeurites
+    Select outline color:Green
+    Select objects to display:Nuclei
+
+SaveImages:[module_num:25|svn_version:\'Unknown\'|variable_revision_number:12|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:NucleiImage
     Select method for constructing file names:From image filename
-    Select image name for file prefix:DAPI
+    Select image name for file prefix:Cyto
     Enter single file name:OrigBlue
     Number of digits:4
     Append a suffix to the image file name?:Yes
-    Text to append to the image name:_CellBodies
-    Saved file format:tif
-    Output file location:Default Output Folder\x7CC\x3A\\\\\\\\Users\\\\\\\\bcimini\\\\\\\\Desktop
+    Text to append to the image name:NucleiImage
+    Saved file format:png
+    Output file location:Default Output Folder\x7C
     Image bit depth:8-bit integer
     Overwrite existing files without warning?:No
     When to save:Every cycle
-    Rescale the images? :No
-    Save as grayscale or color image?:Grayscale
-    Select colormap:gray
     Record the file and path information to the saved image?:No
     Create subfolders in the output folder?:No
     Base image folder:Elsewhere...\x7C
-    Saved movie format:avi
 
-SaveImages:[module_num:15|svn_version:\'Unknown\'|variable_revision_number:11|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the type of image to save:Objects
-    Select the image to save:ColorImage
-    Select the objects to save:Nuclei
-    Select the module display window to save:None
+SaveImages:[module_num:26|svn_version:\'Unknown\'|variable_revision_number:12|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:CellImage
     Select method for constructing file names:From image filename
-    Select image name for file prefix:DAPI
+    Select image name for file prefix:Cyto
     Enter single file name:OrigBlue
     Number of digits:4
     Append a suffix to the image file name?:Yes
-    Text to append to the image name:_Nuclei
-    Saved file format:tif
-    Output file location:Default Output Folder\x7CC\x3A\\\\\\\\Users\\\\\\\\bcimini\\\\\\\\Desktop
+    Text to append to the image name:CellImage
+    Saved file format:png
+    Output file location:Default Output Folder\x7C
     Image bit depth:8-bit integer
     Overwrite existing files without warning?:No
     When to save:Every cycle
-    Rescale the images? :No
-    Save as grayscale or color image?:Grayscale
-    Select colormap:gray
     Record the file and path information to the saved image?:No
     Create subfolders in the output folder?:No
     Base image folder:Elsewhere...\x7C
-    Saved movie format:avi
+
+SaveImages:[module_num:27|svn_version:\'Unknown\'|variable_revision_number:12|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:CytoOverlay
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:Cyto
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:CytoOverlay
+    Saved file format:png
+    Output file location:Default Output Folder\x7C
+    Image bit depth:8-bit integer
+    Overwrite existing files without warning?:No
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...\x7C
